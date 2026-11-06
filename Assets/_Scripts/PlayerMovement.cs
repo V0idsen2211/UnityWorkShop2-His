@@ -13,18 +13,21 @@ public class PlayerMovement : MonoBehaviour
     private InputSystem_Actions inputActions;
     private float horizontalMoveInput;
     private Rigidbody2D rb;
-
+    private Animator anim;
+    
     private bool facingRight = true;
 
     private bool isGrounded;
 
     private float jumpBufferTimer, coyoteTimer;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         inputActions = new InputSystem_Actions();
         inputActions.Player.Enable();
         rb = GetComponent<Rigidbody2D>();
+        anim =  GetComponent<Animator>();
 
     }
 
@@ -61,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
+        HandleAnimations();
     }
 
     private void Turn()
@@ -80,5 +84,25 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(feet.position, checkRadius);
+    }
+
+    private void HandleAnimations()
+    {
+        if (isGrounded)
+        {
+            if (horizontalMoveInput != 0)
+            {
+                anim.CrossFade("run", 0);
+            }
+            else
+            {
+                anim.CrossFade("idle", 0);
+            }
+        }
+        else
+        {
+            anim.CrossFade("air", 0);
+        }
+        
     }
 }
