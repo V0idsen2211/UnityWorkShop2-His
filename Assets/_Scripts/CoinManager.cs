@@ -8,6 +8,7 @@ public class CoinManager : MonoBehaviour
 {
     public TextMeshProUGUI coinText;
     public TextMeshProUGUI winText;
+    public GameObject winSound;
     
     private int coinsCollected;
     private int totalCoins;
@@ -24,6 +25,7 @@ public class CoinManager : MonoBehaviour
         if (coinsCollected == totalCoins)
         {
             winText.text = $"Time taken:{timer.ToString("0.00")}s";
+            Instantiate(winSound, transform.position, transform.rotation);
             StartCoroutine(RestartScene());
         }
         else

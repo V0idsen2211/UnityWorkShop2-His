@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     public float jumpBuffer, coyoteTime;
     public Vector2 worldBorders;
+    public GameObject jumpSound;
     
     private InputSystem_Actions inputActions;
     private float horizontalMoveInput;
@@ -82,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        Instantiate(jumpSound, transform.position, transform.rotation);
         rb.linearVelocityY = jumpForce;
     }
 

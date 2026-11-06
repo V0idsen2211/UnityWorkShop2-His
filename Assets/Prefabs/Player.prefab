@@ -124,6 +124,7 @@ MonoBehaviour:
   jumpBuffer: 0.15
   coyoteTime: 0.15
   worldBorders: {x: 26.5, y: 20}
+  jumpSound: {fileID: 1235240914028048692, guid: 0f140b05743e82444b8a40e5bbaf54ec, type: 3}
 --- !u!95 &3266987859378564428
 Animator:
   serializedVersion: 7
@@ -159,6 +160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinManager
   coinText: {fileID: 0}
+  winText: {fileID: 0}
+  winSound: {fileID: 8299462795297152418, guid: 945451c9a6796b94fa59fcedefc77095, type: 3}
 --- !u!1 &5329292821315549836
 GameObject:
   m_ObjectHideFlags: 0

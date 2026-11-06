@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f99fed7e2add514a80988581ce791ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coin
+  coinSound: {fileID: 8770493629056348356, guid: 1b3e59e114a6a80469bfd98de676c63d, type: 3}
 --- !u!1 &6382705135365651960
 GameObject:
   m_ObjectHideFlags: 0
