@@ -1,0 +1,84 @@
+using System;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public float moveSpeed;
+    public float jumpForce;
+    public Transform feet;
+    public float checkRadius;
+    public LayerMask whatIsGround;
+    public float jumpBuffer, coyoteTime;
+    
+    private InputSystem_Actions inputActions;
+    private float horizontalMoveInput;
+    private Rigidbody2D rb;
+
+    private bool facingRight = true;
+
+    private bool isGrounded;
+
+    private float jumpBufferTimer, coyoteTimer;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        inputActions = new InputSystem_Actions();
+        inputActions.Player.Enable();
+        rb = GetComponent<Rigidbody2D>();
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        isGrounded = Physics2D.OverlapCircle(feet.position, checkRadius, whatIsGround);
+        horizontalMoveInput = inputActions.Player.Move.ReadValue<Vector2>().x;
+        rb.linearVelocityX = horizontalMoveInput * moveSpeed;
+
+        if (facingRight && horizontalMoveInput < 0)Turn();
+        if (!facingRight && horizontalMoveInput > 0)Turn();
+
+
+        if (isGrounded)
+        {
+            coyoteTimer = coyoteTime;
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
+        }
+
+        if (inputActions.Player.Jump.triggered)
+        {
+            jumpBufferTimer = jumpBuffer;
+        }
+        else
+        {
+            jumpBufferTimer -= Time.deltaTime;
+        }
+
+        if (jumpBufferTimer > 0 && coyoteTimer > 0)
+        {
+            Jump();
+        }
+    }
+
+    private void Turn()
+    {
+        facingRight = !facingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
+
+    private void Jump()
+    {
+        rb.linearVelocityY = jumpForce;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(feet.position, checkRadius);
+    }
+}
