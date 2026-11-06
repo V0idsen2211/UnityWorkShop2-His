@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
     public float jumpBuffer, coyoteTime;
+    public Vector2 worldBorders;
     
     private InputSystem_Actions inputActions;
     private float horizontalMoveInput;
@@ -65,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
         HandleAnimations();
+        transform.position = new Vector3(
+            Mathf.Clamp(rb.position.x, -worldBorders.x, worldBorders.x),
+            Mathf.Clamp(rb.position.y, -worldBorders.y, worldBorders.y),
+            0);
     }
 
     private void Turn()
