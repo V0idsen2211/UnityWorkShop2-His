@@ -404,7 +404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: :99999999
+  m_text: :0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0684b3193c06b6549b1a31a85726f202, type: 2}
   m_sharedMaterial: {fileID: -1888584352863931546, guid: 0684b3193c06b6549b1a31a85726f202, type: 2}
@@ -1340,8 +1340,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 2.4188, y: -86.9675}
-  m_SizeDelta: {x: 657.4596, y: 48.0649}
+  m_AnchoredPosition: {x: 2.4189, y: -86.9675}
+  m_SizeDelta: {x: 1876.5907, y: 48.0649}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1183876420
 MonoBehaviour:
@@ -1397,8 +1397,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -3864,10 +3864,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1372007482738032258, guid: 6728f40c1cdb90c4baf590f6fbe6c26b, type: 3}
+      propertyPath: moveSpeed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1609437476112021852, guid: 6728f40c1cdb90c4baf590f6fbe6c26b, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2540823688424760728, guid: 6728f40c1cdb90c4baf590f6fbe6c26b, type: 3}
+      propertyPath: winText
+      value: 
+      objectReference: {fileID: 1183876420}
     - target: {fileID: 2540823688424760728, guid: 6728f40c1cdb90c4baf590f6fbe6c26b, type: 3}
       propertyPath: coinText
       value: 
