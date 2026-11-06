@@ -13,22 +13,23 @@ public class CoinManager : MonoBehaviour
     private int coinsCollected;
     private int totalCoins;
     private float timer;
+    private Coroutine restartCoroutine;
     private void Start()
     {
         totalCoins = FindObjectsByType<Coin>(FindObjectsSortMode.None).Length;
-        
+        restartCoroutine = null;
     }
 
     private void Update()
     {
        
-        if (coinsCollected == totalCoins)
+        if (coinsCollected == totalCoins && restartCoroutine == null)
         {
             winText.text = $"Time taken:{timer.ToString("0.00")}s";
-            Instantiate(winSound, transform.position, transform.rotation);
-            StartCoroutine(RestartScene());
+            restartCoroutine = StartCoroutine(RestartScene());
         }
-        else
+        
+        if(coinsCollected != totalCoins)
         {
             timer += Time.deltaTime;
         }
@@ -52,6 +53,7 @@ public class CoinManager : MonoBehaviour
 
     IEnumerator RestartScene()
     {
+        Instantiate(winSound, transform.position, transform.rotation);
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

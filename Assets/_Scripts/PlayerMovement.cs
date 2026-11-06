@@ -83,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        coyoteTimer = 0;
+        jumpBufferTimer = 0;
         Instantiate(jumpSound, transform.position, transform.rotation);
         rb.linearVelocityY = jumpForce;
     }
