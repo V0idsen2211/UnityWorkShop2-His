@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
     public float jumpBuffer, coyoteTime;
-    public Vector2 worldBorders;
+    public Vector2 worldBordersMin, worldBordersMax;
     public GameObject jumpSound;
     
     private InputSystem_Actions inputActions;
@@ -22,7 +22,20 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
 
     private float jumpBufferTimer, coyoteTimer;
-    
+
+    public static PlayerMovement Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -68,8 +81,8 @@ public class PlayerMovement : MonoBehaviour
         }
         HandleAnimations();
         transform.position = new Vector3(
-            Mathf.Clamp(rb.position.x, -worldBorders.x, worldBorders.x),
-            Mathf.Clamp(rb.position.y, -worldBorders.y, worldBorders.y),
+            Mathf.Clamp(transform.position.x, worldBordersMin.x, worldBordersMax.x),
+            Mathf.Clamp(transform.position.y, worldBordersMin.y, worldBordersMax.y),
             0);
     }
 
