@@ -23,6 +23,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        sentences = new Queue<string>();
+    }
+
     public void StartDialogue(Dialogue dialogue)
     {
         currentDialogue = dialogue;
@@ -32,22 +37,20 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
-
-        if (sentences.Count > 0)
-        {
-            DisplayNextSentence();
-        }
+        DisplayNextSentence();
+        
     }
 
     public void DisplayNextSentence()
     {
-        StopAllCoroutines();
+        
         if (sentences.Count == 0)
         {
             EndDialogue();
             return;
         }
         string sentence = sentences.Dequeue();
+        StopAllCoroutines();
         StartCoroutine(TypeEffect(sentence));
     }
 
@@ -57,6 +60,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char a in sentence.ToCharArray())
         {
             textToType += a;
+            dialogueText.text = textToType;
             yield return new WaitForSeconds(0.05f);
         }
         
