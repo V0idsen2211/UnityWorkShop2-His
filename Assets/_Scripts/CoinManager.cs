@@ -14,10 +14,12 @@ public class CoinManager : MonoBehaviour
     private int totalCoins;
     private float timer;
     private Coroutine restartCoroutine;
+    private float highscore;
     private void Start()
     {
         totalCoins = FindObjectsByType<Coin>(FindObjectsSortMode.None).Length;
         restartCoroutine = null;
+        highscore = PlayerPrefs.GetFloat("HighScore", Mathf.Infinity);
     }
 
     private void Update()
@@ -25,7 +27,11 @@ public class CoinManager : MonoBehaviour
        
         if (coinsCollected == totalCoins && restartCoroutine == null && Vector2.Distance(transform.position, PlayerMovement.Instance.transform.position) < 5f)
         {
-            winText.text = $"Time taken:{timer.ToString("0.00")}s";
+            if (timer < highscore)
+            {
+                PlayerPrefs.SetFloat("HighScore", timer);
+            }
+            winText.text = $"Time taken:{timer.ToString("0.00")}s  Highscore:{PlayerPrefs.GetFloat("HighScore").ToString("0.00")}s";
             restartCoroutine = StartCoroutine(RestartScene());
         }
         

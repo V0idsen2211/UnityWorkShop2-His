@@ -41,7 +41,7 @@ public class DialogueNPC : MonoBehaviour
     {
         if (name == d.displayName)
         {
-            obstacle.SetActive(false);
+            Destroy(obstacle);
         }
     }
 
