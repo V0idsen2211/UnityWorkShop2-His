@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpBuffer, coyoteTime;
     public Vector2 worldBordersMin, worldBordersMax;
     public GameObject jumpSound;
+    public GameObject jumpEffect;
     
     private InputSystem_Actions inputActions;
     private float horizontalMoveInput;
@@ -99,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
         coyoteTimer = 0;
         jumpBufferTimer = 0;
         Instantiate(jumpSound, transform.position, transform.rotation);
+        Instantiate(jumpEffect, feet.position, jumpEffect.transform.rotation);
         rb.linearVelocityY = jumpForce;
     }
 

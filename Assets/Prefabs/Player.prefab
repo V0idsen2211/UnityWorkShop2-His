@@ -1,5 +1,45 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1204499553443743386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6889031784814770880}
+  - component: {fileID: 3869643434065525065}
+  m_Layer: 0
+  m_Name: Listener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6889031784814770880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204499553443743386}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4646041339296476231}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &3869643434065525065
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204499553443743386}
+  m_Enabled: 1
 --- !u!1 &1609437476112021852
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +53,6 @@ GameObject:
   - component: {fileID: 8512606447399135521}
   - component: {fileID: 1372007482738032258}
   - component: {fileID: 3266987859378564428}
-  - component: {fileID: 2540823688424760728}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -36,6 +75,7 @@ Transform:
   m_Children:
   - {fileID: 3939102878021563686}
   - {fileID: 3228185372607105348}
+  - {fileID: 6889031784814770880}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &4652295979601958556
@@ -48,7 +88,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 197799ddd0ec938408dc49b1e16f9d49, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -124,8 +164,9 @@ MonoBehaviour:
   jumpBuffer: 0.15
   coyoteTime: 0.15
   worldBordersMin: {x: -26.5, y: -12.02}
-  worldBordersMax: {x: 165.28, y: 49}
+  worldBordersMax: {x: 164, y: 49}
   jumpSound: {fileID: 1235240914028048692, guid: 0f140b05743e82444b8a40e5bbaf54ec, type: 3}
+  jumpEffect: {fileID: 6839688739779458609, guid: 72c59b47a41affc42ba872403fd9e089, type: 3}
 --- !u!95 &3266987859378564428
 Animator:
   serializedVersion: 7
@@ -148,21 +189,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2540823688424760728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609437476112021852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 454a0d098969441e891ba70c9e565248, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinManager
-  coinText: {fileID: 0}
-  winText: {fileID: 0}
-  winSound: {fileID: 8299462795297152418, guid: 945451c9a6796b94fa59fcedefc77095, type: 3}
 --- !u!1 &5329292821315549836
 GameObject:
   m_ObjectHideFlags: 0

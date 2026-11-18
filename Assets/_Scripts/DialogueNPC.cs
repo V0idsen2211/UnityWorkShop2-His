@@ -5,10 +5,12 @@ public class DialogueNPC : MonoBehaviour
 {
     public float rangeToStartDialogue;
     private InputSystem_Actions inputActions;
-    public  Dialogue d;
+    public  Dialogue startingDialogue, regularDialogue;
     private bool startedDialogue = false;
     public GameObject interactButton;
     public GameObject obstacle;
+    private bool finishedStartingDialogue = false;
+    public GameObject explosionSound;
     private void OnEnable()
     {
         DialogueManager.OnDialogueEnd += DialogueEnd;
@@ -25,10 +27,14 @@ public class DialogueNPC : MonoBehaviour
     {
         if (inputActions.Player.Interact.WasPressedThisFrame())
         {
-            if (Vector2.Distance(PlayerMovement.Instance.transform.position, transform.position) <= rangeToStartDialogue && !startedDialogue)
+            if (Vector2.Distance(PlayerMovement.Instance.transform.position, transform.position) <= rangeToStartDialogue && !startedDialogue && !finishedStartingDialogue)
             {
                 Debug.Log("Starting Dialogue");
-                DialogueManager.Instance.StartDialogue(d);
+                DialogueManager.Instance.StartDialogue(startingDialogue);
+                startedDialogue = true;
+            }else if (Vector2.Distance(PlayerMovement.Instance.transform.position, transform.position) <= rangeToStartDialogue && !startedDialogue && finishedStartingDialogue)
+            {
+                DialogueManager.Instance.StartDialogue(regularDialogue);
                 startedDialogue = true;
             }
             
@@ -39,9 +45,13 @@ public class DialogueNPC : MonoBehaviour
 
     void DialogueEnd(string name)
     {
-        if (name == d.displayName)
+        if (name == startingDialogue.displayName)
         {
+            startedDialogue = false;
+            finishedStartingDialogue = true;
+            Instantiate(explosionSound, obstacle.transform.position, Quaternion.identity);
             Destroy(obstacle);
+            
         }
     }
 

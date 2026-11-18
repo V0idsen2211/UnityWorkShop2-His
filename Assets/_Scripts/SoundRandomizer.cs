@@ -11,6 +11,7 @@ public class SoundRandomizer : MonoBehaviour
     {
         AudioClip clip = sounds[Random.Range(0, sounds.Length)];
         source = GetComponent<AudioSource>();
+        source.volume = AudioManager.Instance.masterVolume;
         source.clip = clip;
         source.Play();
         Destroy(gameObject, clip.length);

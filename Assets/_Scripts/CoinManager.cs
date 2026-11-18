@@ -54,7 +54,7 @@ public class CoinManager : MonoBehaviour
     private void CollectCoin()
     {
         coinsCollected++;
-        coinText.text = $":{coinsCollected}";
+        coinText.text = $":{coinsCollected}/{totalCoins}";
     }
 
     IEnumerator RestartScene()
