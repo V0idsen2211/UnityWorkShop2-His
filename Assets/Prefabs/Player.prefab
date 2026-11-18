@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 8
-  jumpForce: 25
+  jumpForce: 15
   feet: {fileID: 3939102878021563686}
   checkRadius: 0.38
   whatIsGround:

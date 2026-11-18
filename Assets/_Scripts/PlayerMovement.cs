@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferTimer, coyoteTimer;
 
     public static PlayerMovement Instance { get; private set; }
+    private float regularGravity;
 
     private void Awake()
     {
@@ -44,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Player.Enable();
         rb = GetComponent<Rigidbody2D>();
         anim =  GetComponent<Animator>();
-
+        regularGravity = rb.gravityScale;
     }
 
     // Update is called once per frame
@@ -85,6 +86,19 @@ public class PlayerMovement : MonoBehaviour
             Mathf.Clamp(transform.position.x, worldBordersMin.x, worldBordersMax.x),
             Mathf.Clamp(transform.position.y, worldBordersMin.y, worldBordersMax.y),
             0);
+
+        if (rb.linearVelocityY < 0)
+        {
+            rb.gravityScale = regularGravity * 2;
+        }
+        else if(inputActions.Player.Jump.IsPressed() && rb.gravityScale > 0)
+        {
+            rb.gravityScale = regularGravity * .33f;
+        }
+        else
+        {
+            rb.gravityScale = regularGravity;
+        }
     }
 
     private void Turn()
