@@ -49,7 +49,7 @@ public class PauseManager : MonoBehaviour
         else
         {
             Time.timeScale = 1;
-            SceneManager.UnloadScene("AudioUI");
+            SceneManager.UnloadSceneAsync("AudioUI");
 
         }
     }
