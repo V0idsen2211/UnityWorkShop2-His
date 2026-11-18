@@ -18,7 +18,7 @@ public class CoinManager : MonoBehaviour
     private void Start()
     {
         totalCoins = FindObjectsByType<Coin>(FindObjectsSortMode.None).Length;
-        restartCoroutine = null;
+        restartCoroutine = null; 
         highscore = PlayerPrefs.GetFloat("HighScore", Mathf.Infinity);
     }
 

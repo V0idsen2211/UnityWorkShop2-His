@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(inputActions.Player.Jump.IsPressed() && rb.gravityScale > 0)
         {
-            rb.gravityScale = regularGravity * .33f;
+            rb.gravityScale = regularGravity * .45f;
         }
         else
         {
